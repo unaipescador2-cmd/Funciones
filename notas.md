@@ -77,3 +77,70 @@ En la Fase 1 vi que `(1.005).toFixed(2)` da `"1.00"` porque 1.005 no se guarda e
    Cuando un dato puede no indicarse y existe un valor razonable de reserva. Por ejemplo, el IVA general es del 21 %, así que `tipo = 21` evita tener que escribirlo cada vez. Si llamo a `calcularIVA(100)`, `tipo` vale 21. Si llamo a `calcularIVA(100, 10)`, el valor por defecto se ignora y `tipo` vale 10.
 3. **¿Qué pasó con la copia que usaba `console.log`? ¿Por qué?**
    La copia mostraba el resultado en la consola, pero no devolvía nada. `console.log` solo muestra un valor, no lo devuelve. Como la función no tiene `return`, devuelve `undefined`. Al hacer `precio + undefined` dentro de `precioConIVAConsola`, el resultado es `NaN`. Para que otra función pueda usar el resultado de una función, esta tiene que devolverlo con `return`.
+
+
+---
+ 
+## Fase 3 · Funciones pequeñas
+ 
+Regla de la fase: una función hace una sola cosa. Si para explicarla hace falta decir "hace esto Y además esto", se divide en dos.
+ 
+### A · Temperaturas
+ 
+| Función | Qué hace | Ejemplo probado | Resultado |
+|---------|----------|-----------------|-----------|
+| `celsiusAFahrenheit(c)` | Pasa de °C a °F con °C × 9 ÷ 5 + 32 | `celsiusAFahrenheit(100)` | 212 |
+| `fahrenheitACelsius(f)` | Pasa de °F a °C con (°F − 32) × 5 ÷ 9 | `fahrenheitACelsius(32)` | 0 |
+| `convertirTemperatura(valor, de, a)` | Elige cuál de las dos anteriores usar | `convertirTemperatura(100, "C", "F")` | 212 |
+| `convertirTemperatura(valor, de, a)` | Si las unidades son iguales, devuelve el mismo valor | `convertirTemperatura(25, "C", "C")` | 25 |
+ 
+`convertirTemperatura` no hace cálculos propios: decide y llama a `celsiusAFahrenheit` o a `fahrenheitACelsius`. Si recibe una unidad que no es "C" ni "F", devuelve `null`.
+ 
+### B · Validador de contraseñas
+ 
+| Función | Qué hace | Ejemplo probado | Resultado |
+|---------|----------|-----------------|-----------|
+| `longitudSuficiente(texto, minimo = 8)` | Comprueba la longitud mínima | `longitudSuficiente("1234567")` | false |
+| `longitudSuficiente(texto, minimo = 8)` | | `longitudSuficiente("12345678")` | true |
+| `tieneMayuscula(texto)` | Comprueba si hay alguna mayúscula | `tieneMayuscula("abc")` | false |
+| `tieneMayuscula(texto)` | | `tieneMayuscula("aBc")` | true |
+| `tieneMinuscula(texto)` | Comprueba si hay alguna minúscula | `tieneMinuscula("ABC")` | false |
+| `tieneMinuscula(texto)` | | `tieneMinuscula("aBC")` | true |
+| `tieneNumero(texto)` | Comprueba si hay algún número | `tieneNumero("abc")` | false |
+| `tieneNumero(texto)` | | `tieneNumero("abc1")` | true |
+| `evaluarContrasena(texto)` | Devuelve "débil", "media" o "fuerte" | `evaluarContrasena("Abcdefg1")` | "fuerte" |
+| `evaluarContrasena(texto)` | | `evaluarContrasena("Abcdefgh")` | "media" |
+| `evaluarContrasena(texto)` | | `evaluarContrasena("abc")` | "débil" |
+ 
+Para detectar una mayúscula paso el texto a minúsculas con `toLowerCase()`: si el texto cambia, es que tenía alguna mayúscula. Con las minúsculas hago lo mismo con `toUpperCase()`. No he usado expresiones regulares. `evaluarContrasena` cuenta cuántos de los cuatro requisitos se cumplen: 4 es fuerte, 3 es media y menos de 3 es débil.
+ 
+### C · Generador de contraseñas
+ 
+| Función | Qué hace | Ejemplo probado | Resultado |
+|---------|----------|-----------------|-----------|
+| `numeroAleatorio(min, max)` | Entero al azar entre min y max, ambos incluidos | `numeroAleatorio(1, 6)` | 1, 2, 3, 4, 5 o 6 |
+| `caracterAleatorio(conjunto)` | Un carácter al azar de un texto | `caracterAleatorio("abc")` | "a", "b" o "c" |
+| `generarContrasena(longitud, opciones)` | Contraseña al azar de esa longitud | `generarContrasena(12)` | texto de 12 caracteres |
+| `generarContrasena(longitud, opciones)` | Longitud no válida | `generarContrasena(3)` | null |
+ 
+`numeroAleatorio` usa la fórmula `Math.floor(Math.random() * (max - min + 1)) + min`: `Math.random()` da un decimal entre 0 y 1, se multiplica por la cantidad de valores posibles, `Math.floor` quita los decimales y se suma `min`. Las opciones de `generarContrasena` se pasan en un objeto, por ejemplo `{ mayusculas: false }`, y por defecto mayúsculas y números están activados.
+ 
+### D · Contador de palabras
+ 
+| Función | Qué hace | Ejemplo probado | Resultado |
+|---------|----------|-----------------|-----------|
+| `palabras(texto)` | Lista de palabras, sin espacios repetidos ni saltos de línea | `palabras("hola mundo")` | ["hola", "mundo"] |
+| `contarPalabras(texto)` | Cuántas palabras hay (usa `palabras`) | `contarPalabras("hola mundo")` | 2 |
+| `contarPalabras(texto)` | | `contarPalabras("")` | 0 |
+| `contarCaracteres(texto, conEspacios = true)` | Cuenta caracteres, con o sin espacios | `contarCaracteres("a b c")` | 5 |
+| `contarCaracteres(texto, conEspacios = true)` | | `contarCaracteres("a b c", false)` | 3 |
+| `palabraMasLarga(texto)` | Devuelve la palabra más larga | `palabraMasLarga("El perro rápido")` | "rápido" |
+| `minutosLectura(texto, ppm = 200)` | Minutos de lectura, redondeados hacia arriba | `minutosLectura("hola")` | 1 |
+| `minutosLectura(texto, ppm = 200)` | | `minutosLectura("")` | 0 |
+ 
+### Preguntas
+ 
+1. **¿Qué funciones usa `evaluarContrasena`? ¿Y `generarContrasena`?**
+   `evaluarContrasena` usa `longitudSuficiente`, `tieneMayuscula`, `tieneMinuscula` y `tieneNumero`. `generarContrasena` usa `caracterAleatorio`, y esta a su vez usa `numeroAleatorio`.
+2. **¿Cuál fue la función más difícil? ¿Por qué?**
+   ESCRIBE AQUÍ TU RESPUESTA. Explica cuál te costó más y por qué, y cómo lo entendiste al final.
