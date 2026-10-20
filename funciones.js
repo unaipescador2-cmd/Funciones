@@ -158,3 +158,12 @@ function palabraMasLarga(texto) {
 function minutosLectura(texto, ppm = 200) {
   return Math.ceil(contarPalabras(texto) / ppm);
 }
+
+//Fase 4 
+
+function esNumeroValido(texto) {
+  if (texto.trim() === "") {
+    return false;
+  }
+  return Number.isFinite(Number(texto));
+}

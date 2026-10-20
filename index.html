@@ -1,11 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller de funciones</title>
+  <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <script src="funciones.js"></script>
+
+  <header>
+    <h1>Taller de funciones</h1>
+    <p>Cinco herramientas pequeñas hechas con funciones propias.</p>
+  </header>
+
+  <main>
+
+    <!-- 1 · IVA y descuentos -->
+    <section id="iva">
+      <h2>IVA y descuentos</h2>
+
+      <label for="iva-precio">Precio (€)</label>
+      <input type="text" id="iva-precio" inputmode="decimal" placeholder="Ej: 100">
+
+      <label for="iva-tipo">IVA (%) <small>vacío = 21</small></label>
+      <input type="text" id="iva-tipo" inputmode="decimal" placeholder="21">
+
+      <label for="iva-descuento">Descuento (%) <small>vacío = 0</small></label>
+      <input type="text" id="iva-descuento" inputmode="decimal" placeholder="0">
+
+      <button type="button" id="btn-iva">Calcular</button>
+      <div id="resultado-iva" class="resultado" aria-live="polite"></div>
+    </section>
+
+    <!-- 2 · Conversor de temperaturas -->
+    <section id="temperaturas">
+      <h2>Conversor de temperaturas</h2>
+
+      <label for="temp-valor">Valor</label>
+      <input type="text" id="temp-valor" inputmode="decimal" placeholder="Ej: 100">
+
+      <label for="temp-de">De</label>
+      <select id="temp-de">
+        <option value="C">Celsius (°C)</option>
+        <option value="F">Fahrenheit (°F)</option>
+      </select>
+
+      <label for="temp-a">A</label>
+      <select id="temp-a">
+        <option value="F">Fahrenheit (°F)</option>
+        <option value="C">Celsius (°C)</option>
+      </select>
+
+      <button type="button" id="btn-temp">Convertir</button>
+      <div id="resultado-temp" class="resultado" aria-live="polite"></div>
+    </section>
+
+    <!-- 3 · Validador de contraseñas -->
+    <section id="validador">
+      <h2>Validador de contraseñas</h2>
+
+      <label for="val-contrasena">Contraseña</label>
+      <input type="text" id="val-contrasena" autocomplete="off" placeholder="Escribe una contraseña">
+
+      <button type="button" id="btn-validar">Evaluar</button>
+      <div id="resultado-validar" class="resultado" aria-live="polite"></div>
+    </section>
+
+    <!-- 4 · Generador de contraseñas -->
+    <section id="generador">
+      <h2>Generador de contraseñas</h2>
+
+      <label for="gen-longitud">Longitud (6 a 30)</label>
+      <input type="text" id="gen-longitud" inputmode="numeric" placeholder="Ej: 12">
+
+      <label class="check">
+        <input type="checkbox" id="gen-mayusculas" checked> Incluir mayúsculas
+      </label>
+
+      <label class="check">
+        <input type="checkbox" id="gen-numeros" checked> Incluir números
+      </label>
+
+      <button type="button" id="btn-generar">Generar</button>
+      <div id="resultado-generar" class="resultado" aria-live="polite"></div>
+    </section>
+
+    <!-- 5 · Contador de palabras -->
+    <section id="contador">
+      <h2>Contador de palabras</h2>
+
+      <label for="palabras-texto">Texto</label>
+      <textarea id="palabras-texto" rows="5" placeholder="Escribe o pega un texto"></textarea>
+
+      <label class="check">
+        <input type="checkbox" id="palabras-espacios" checked> Contar espacios en los caracteres
+      </label>
+
+      <button type="button" id="btn-palabras">Analizar</button>
+      <div id="resultado-palabras" class="resultado" aria-live="polite"></div>
+    </section>
+
+    <!-- Pruebas (Fase 5) -->
+    <section id="pruebas">
+      <h2>Pruebas</h2>
+      <button type="button" id="btn-pruebas">Ejecutar pruebas</button>
+      <div id="resultado-pruebas" class="resultado" aria-live="polite"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>IES Juan García Valdemora · 2º DAW</p>
+  </footer>
+
+  <script src="funciones.js"></script>
+  <script src="app.js"></script>
+  <script src="pruebas.js"></script>
 </body>
 </html>

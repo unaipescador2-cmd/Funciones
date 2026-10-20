@@ -1,0 +1,139 @@
+:root {
+  --fondo: #f4f5f7;
+  --tarjeta: #ffffff;
+  --texto: #1f2933;
+  --suave: #52606d;
+  --borde: #d5dae0;
+  --acento: #2f5fd0;
+  --acento-oscuro: #2449a3;
+  --ok-fondo: #e6f4ea;
+  --ok-texto: #1e6b34;
+  --error-fondo: #fdeaea;
+  --error-texto: #a12626;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+header,
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+header h1 {
+  margin: 0 0 0.25rem;
+}
+
+header p,
+footer p {
+  margin: 0;
+  color: var(--suave);
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+section {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 1.25rem;
+}
+
+section h2 {
+  margin: 0 0 1rem;
+  font-size: 1.15rem;
+}
+
+label {
+  display: block;
+  margin-top: 0.75rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+label small {
+  font-weight: 400;
+  color: var(--suave);
+}
+
+label.check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 1px;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.6rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--acento);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--acento-oscuro);
+}
+
+.resultado {
+  margin-top: 1rem;
+  white-space: pre-line;
+  border-radius: 6px;
+}
+
+.resultado:empty {
+  display: none;
+}
+
+.resultado.ok {
+  padding: 0.75rem;
+  background: var(--ok-fondo);
+  color: var(--ok-texto);
+}
+
+.resultado.error {
+  padding: 0.75rem;
+  background: var(--error-fondo);
+  color: var(--error-texto);
+}

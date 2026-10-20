@@ -143,4 +143,20 @@ Para detectar una mayúscula paso el texto a minúsculas con `toLowerCase()`: si
 1. **¿Qué funciones usa `evaluarContrasena`? ¿Y `generarContrasena`?**
    `evaluarContrasena` usa `longitudSuficiente`, `tieneMayuscula`, `tieneMinuscula` y `tieneNumero`. `generarContrasena` usa `caracterAleatorio`, y esta a su vez usa `numeroAleatorio`.
 2. **¿Cuál fue la función más difícil? ¿Por qué?**
-   ESCRIBE AQUÍ TU RESPUESTA. Explica cuál te costó más y por qué, y cómo lo entendiste al final.
+   La más difícil fue `numeroAleatorio`, porque su fórmula tiene varios pasos seguidos. `Math.random()` da un decimal entre 0 y 1. Ese decimal se multiplica por la cantidad de números posibles (`max - min + 1`), `Math.floor` le quita los decimales y al final se suma `min`. Lo entendí probándola con `numeroAleatorio(1, 6)` muchas veces en la consola.
+---
+ 
+## Fase 4 · Interfaz de las cinco herramientas
+ 
+En `index.html` hay una sección por herramienta, con sus campos, su botón y un sitio para el resultado. En `app.js` cada botón tiene su función (`manejarIVA`, `manejarTemperatura`, `manejarValidador`, `manejarGenerador` y `manejarPalabras`). Todas hacen lo mismo, en este orden: leen los campos, comprueban que están bien, calculan con mis funciones y muestran el resultado. Los errores se escriben en la página, sin usar `alert`.
+ 
+Lo que escribe el usuario siempre llega como texto, así que uso `esNumeroValido` en todos los campos numéricos. En el IVA, si el campo está vacío se usa 21. En el descuento, si está vacío se usa 0. El precio vacío da un error.
+ 
+### Preguntas
+ 
+1. **¿Por qué el precio vacío no puede tratarse como 0?**
+   Porque `Number("")` da 0. Si lo tratara como 0, el programa creería que el usuario ha escrito un precio de 0 € y daría un resultado que parece correcto, cuando en realidad falta el dato. Es mejor avisar con un error.
+2. **Apunta tres funciones predefinidas que has usado en esta fase y para qué.**
+   - `document.getElementById`: busca un elemento de la página por su id para leer o escribir en él.
+   - `Number`: convierte un texto en número.
+   - `trim`: quita los espacios del principio y del final, para detectar un campo que solo tiene espacios.
